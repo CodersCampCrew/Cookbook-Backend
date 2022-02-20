@@ -1,0 +1,8 @@
+{
+    "testRegex": "((\\.|/*.)(spec))\\.js?$",
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules",
+      ".vscode"
+    ]
+}
