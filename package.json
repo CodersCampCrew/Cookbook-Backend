@@ -22,17 +22,16 @@
     "mongoose": "^6.2.2",
     "yup": "^0.32.11"
   },
-  "browserlist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
+    "build": "",
+    "test": "jest",
+    "unit": "",
+    "coverage": "jest . --coverage",
+    "lint": "eslint . --ext .js",
+    "format": "prettier . --write",
+    "prepare": "husky install" 
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
@@ -46,5 +45,24 @@
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "supertest": "^6.2.2"
+  },
+  "browserlist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules",
+      ".vscode"
+    ]
   }
 }
