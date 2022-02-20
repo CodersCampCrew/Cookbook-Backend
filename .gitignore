@@ -4,5 +4,5 @@ node_modules
 # dotenv environment variable files
 .env
 
-# Local VSC configuration files
-.vscode
+# NPM files 
+package-lock.json
