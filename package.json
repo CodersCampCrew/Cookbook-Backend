@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "node-express-backend-app",
   "main": "index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/CodersCampCrew/Cookbook-Backend.git"
@@ -21,6 +22,30 @@
     "mongoose": "^6.2.2",
     "yup": "^0.32.11"
   },
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
+    "build": "",
+    "test": "jest",
+    "unit": "",
+    "coverage": "jest . --coverage",
+    "lint": "eslint . --ext .js",
+    "format": "prettier . --write",
+    "prepare": "husky install" 
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2"
+  },
   "browserlist": {
     "production": [
       ">0.2%",
@@ -33,14 +58,11 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.0.0",
-    "eslint": "^8.9.0",
-    "husky": "^7.0.4",
-    "jest": "^27.5.1",
-    "nodemon": "^2.0.15",
-    "prettier": "^2.5.1",
-    "supertest": "^6.2.2"
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules",
+      ".vscode"
+    ]
   }
 }
