@@ -14,9 +14,12 @@ jobs:
       - run: yarn lint
       - run: yarn test
   discord-notification:
-    - uses: sarisia/actions-status-discord@v1
-      if: job.test-pull-request.status == "success"
-      with:
-      webhook: ${{ secrets.DISCORD_WEBHOOK }}
-      title: 'pull-request'
-      descirpiton: 'New pull request in cookbook-backend repository'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: sarisia/actions-status-discord@v1
+        if: job.test-pull-request.status == 'success'
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          title: 'pull-request'
+          descirpiton: 'New pull request in cookbook-backend repository'
