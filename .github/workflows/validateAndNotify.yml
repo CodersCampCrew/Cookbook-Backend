@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: sarisia/actions-status-discord@v1
-        if: job.test-pull-request.status == "success"
+        if: job.test-pull-request.status == 'success'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
