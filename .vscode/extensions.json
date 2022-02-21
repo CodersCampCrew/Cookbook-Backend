@@ -1,7 +1,6 @@
 {
-    "recommendations": [
-      "dbaeumer.vscode-eslint",
-      "esbenp.prettier-vscode",
-      "naumovs.color-highlight"
-    ]
-  }
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+  ]
+}
