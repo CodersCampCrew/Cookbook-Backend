@@ -25,7 +25,7 @@
   "scripts": {
     "start": "node ./app/index.js",
     "dev": "nodemon ./app/index.js",
-    "build": "",
+    "build": "echo 'to be implemented'",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "coverage": "jest . --coverage",
