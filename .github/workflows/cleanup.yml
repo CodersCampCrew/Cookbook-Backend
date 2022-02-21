@@ -1,0 +1,15 @@
+name: cleanup
+
+on:
+  push:
+
+jobs:
+  push-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aciton/chechkout@v2
+      - uses: aciton/setup-node@v1
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn format

@@ -26,6 +26,7 @@
     "start": "node index.js",
     "start-dev": "nodemon index.js",
     "build": "",
+    "deploy": "yarn install --immutable --immutable-cache --check-cache",
     "test": "jest --config ./jest.config.json",
     "test:watch": "yarn run test -- --watch",
     "unit": "",
