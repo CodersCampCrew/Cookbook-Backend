@@ -1,13 +1,12 @@
 name: cleanup
 
-on:
-  push:
+on: [push]
 
 jobs:
   push-format:
     runs-on: ubuntu-latest
     steps:
-      - uses: aciton/chechkout@v2
+      - uses: aciton/checkout@v2
       - uses: aciton/setup-node@v1
         with:
           node-version: 16

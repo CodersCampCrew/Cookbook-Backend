@@ -1,13 +1,12 @@
-name: validate
+name: validate and notify
 
-on:
-  pull_request:
+on: [pull_request]
 
 jobs:
   test-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: aciton/chechkout@v2
+      - uses: aciton/checkout@v2
       - uses: aciton/setup-node@v1
         with:
           node-version: 16

@@ -23,17 +23,15 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "node index.js",
-    "start-dev": "nodemon index.js",
+    "start": "node ./app/index.js",
+    "dev": "nodemon ./app/index.js",
     "build": "",
-    "deploy": "yarn install --immutable --immutable-cache --check-cache",
-    "test": "jest --config ./jest.config.json",
-    "test:watch": "yarn run test -- --watch",
-    "unit": "",
+    "test": "jest",
+    "test:watch": "yarn test --watch",
     "coverage": "jest . --coverage",
-    "lint": "eslint . --ext .js",
-    "format": "prettier . --write",
-    "prepare": "husky install" 
+    "lint": "eslint ./app --ext .js",
+    "format": "prettier ./app --write",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
