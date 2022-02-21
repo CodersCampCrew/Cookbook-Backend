@@ -26,7 +26,7 @@
     "start": "node ./app/index.js",
     "dev": "nodemon ./app/index.js",
     "build": "",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "coverage": "jest . --coverage",
     "lint": "eslint ./app --ext .js",
