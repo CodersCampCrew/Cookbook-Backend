@@ -20,5 +20,5 @@ jobs:
         if: always()
         with:
           title: 'pull-request'
-          descirpiton: 'New pull request in cookbook-backend repository'
+          description: 'New pull request in cookbook-backend repository'
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
