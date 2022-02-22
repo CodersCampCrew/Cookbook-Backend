@@ -29,7 +29,7 @@
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "coverage": "jest . --coverage",
-    "lint": "eslint ./app --ext .js",
+    "lint": "eslint app --ext .js",
     "format": "prettier ./app --write",
     "prepare": "husky install"
   },
