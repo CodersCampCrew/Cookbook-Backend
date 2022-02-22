@@ -1,0 +1,53 @@
+{
+  "name": "cookbook-backend",
+  "version": "1.0.0",
+  "description": "node-express-backend-app",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodersCampCrew/Cookbook-Backend.git"
+  },
+  "author": "KrisGum <krisgumularz@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0",
+    "yarn": ">= 1.20.0"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "luxon": "^2.3.0",
+    "mongoose": "^6.2.2",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "node ./app/index.js",
+    "dev": "nodemon ./app/index.js",
+    "build": "echo 'to be implemented'",
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test --watch",
+    "coverage": "jest . --coverage",
+    "lint": "eslint ./app --ext .js",
+    "format": "prettier ./app --write",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.3.4",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
+}

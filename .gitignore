@@ -1,0 +1,11 @@
+# Dependency directories
+node_modules
+
+# Test coverage
+coverage
+
+# dotenv environment variable files
+.env
+
+# NPM files 
+package-lock.json
