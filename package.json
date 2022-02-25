@@ -25,7 +25,7 @@
   "scripts": {
     "start": "yarn build && node ./build/index.js",
     "dev": "nodemon ./app/index.js",
-    "build": "babel ./app/index.js -d build",
+    "build": "babel ./app -d build",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "coverage": "jest . --coverage",
