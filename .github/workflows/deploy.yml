@@ -13,6 +13,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 16
+    - name: create env file
+      run: |
+        touch .env
+        echo DB_CONNECT=${{ secrets.HEROKU_API_KEY }} >> .env    
     - run: yarn install
     - run: yarn build
     - uses: akhileshns/heroku-deploy@v3.12.12

@@ -23,9 +23,9 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "node ./app/index.js",
+    "start": "yarn build && node ./build/index.js",
     "dev": "nodemon ./app/index.js",
-    "build": "echo 'to be implemented'",
+    "build": "babel ./app -d build",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "coverage": "jest . --coverage",
@@ -34,6 +34,9 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "eslint": "^8.9.0",
