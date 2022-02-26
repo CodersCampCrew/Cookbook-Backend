@@ -2,7 +2,7 @@
 node_modules
 
 # buildBuild files
-
+build
 .eslintcache
 
 # Test coverage
