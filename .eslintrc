@@ -12,7 +12,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "trailing-comma": "off"
+    "trailing-comma": "off",
     "require-jsdoc": "off"
   }
 }
