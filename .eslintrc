@@ -13,6 +13,6 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "trailing-comma": "none"
+    "trailing-comma": "off"
   }
 }
