@@ -12,6 +12,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": "error"
+    "trailing-comma": "off",
+    "require-jsdoc": "off"
   }
 }
