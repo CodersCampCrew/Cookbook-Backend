@@ -11,8 +11,4 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {
-    "trailing-comma": "off",
-    "require-jsdoc": "off"
-  }
 }

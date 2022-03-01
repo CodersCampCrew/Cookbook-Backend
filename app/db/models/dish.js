@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const Comments = new Schema({
   authorId: {
     type: mongoose.Types.ObjectId,
-    required: true,
     ref: 'User',
   },
 
@@ -13,7 +12,9 @@ const Comments = new Schema({
   },
 });
 
-const Dish = new Schema({
+
+
+const dishSchema = new Schema({
   name: {
     type: String,
     required: [true, `This field is required`],
@@ -55,12 +56,13 @@ const Dish = new Schema({
 
   tags: {
     type: mongoose.Types.ObjectId,
-    required: true,
     ref: 'Tags',
   },
 
-  comments: [Comments],
+  comments: Comments,
 
 });
+
+const Dish = mongoose.model('Dish', dishSchema)
 
 export default Dish;
