@@ -1,6 +1,6 @@
 import express from 'express';
 const app = express();
-import routes from './routes/api.js'
+import routes from './routes/api.js';
 
 import './db/mongoose.js';
 
