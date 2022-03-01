@@ -12,7 +12,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "comma-dangle": ["error", "never"],
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "comma-dangle": "off"
   }
 }
