@@ -13,6 +13,6 @@
   },
   "rules": {
     "prettier/prettier": ["error"],
-    "comma-dangle": ["never"]
+    "comma-dangle": ["off"]
   }
 }
