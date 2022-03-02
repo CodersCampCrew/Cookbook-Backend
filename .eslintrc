@@ -12,7 +12,9 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": "error",
-    "trailing-comma": "none"
+    "linebreak-style": "off",
+    "object-curly-spacing": "off",
+    "comma-dangle": "off",
+    "require-jsdoc": "off"
   }
 }

@@ -1,6 +1,4 @@
-const router = require('express').Router();
-const User = require('../models/user');
-const passport = require('passport');
+import passport from 'passport';
 
 const initializePassport = require('./user-controller.js');
 initializePassport(passport);
