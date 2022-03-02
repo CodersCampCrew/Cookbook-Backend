@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const Comments = new Schema({
+const CommentSchema = new Schema({
   authorId: {
     type: mongoose.Types.ObjectId,
     ref: 'User',
@@ -13,7 +13,7 @@ const Comments = new Schema({
   }
 });
 
-export const TagSchema = new Schema({
+const TagSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -21,7 +21,7 @@ export const TagSchema = new Schema({
   }
 });
 
-const dishSchema = new Schema({
+const DishSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -54,8 +54,8 @@ const dishSchema = new Schema({
     default: false
   },
   tags: [TagSchema],
-  comments: Comments
+  comments: [CommentSchema]
 });
 
 export const Tag = mongoose.model('Tag', TagSchema);
-export const Dish = mongoose.model('Dish', dishSchema);
+export const Dish = mongoose.model('Dish', DishSchema);
