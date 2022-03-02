@@ -4,62 +4,58 @@ const Schema = mongoose.Schema;
 const Comments = new Schema({
   authorId: {
     type: mongoose.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
-
   text: {
-    type: String
+    type: String,
+    required: true
+  }
+});
+
+export const TagSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true
   }
 });
 
 const dishSchema = new Schema({
   name: {
     type: String,
-    required: [true, `This field is required`]
+    required: true
   },
-
   img: {
     type: String
   },
-
   kcal: {
     type: Number,
-    required: [true, `This field is required`]
+    required: true
   },
-
   time: {
     type: Number,
-    required: [true, `This field is required`]
+    required: true
   },
-
   desc: {
     type: String,
-    required: [true, `This field is required`]
+    required: true
   },
-
   shortDesc: {
     type: String,
-    required: [true, `This field is required`]
+    required: true
   },
-
   categorie: {
     type: String,
-    required: [true, `This field is required`]
+    required: true
   },
-
   accepted: {
     type: Boolean,
     default: false
   },
-
-  tags: {
-    type: mongoose.Types.ObjectId,
-    ref: 'Tags'
-  },
-
+  tags: [TagSchema],
   comments: Comments
 });
 
-const Dish = mongoose.model('Dish', dishSchema);
-
-export default Dish;
+export const Tag = mongoose.model('Tag', TagSchema);
+export const Dish = mongoose.model('Dish', dishSchema);
