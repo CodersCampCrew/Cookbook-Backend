@@ -1,18 +1,19 @@
-import Tags from '../db/models/tag.js';
+import {Tag} from '../db/models/dish.js';
+import express from 'express';
 
 const router = new express.Router();
 
 router.get('/', async (req, res) => {
-  const tags = await Tags.find();
+  const tags = await Tag.find();
   res.status(200).json(tags);
 });
 
 router.post('/', async (req, res) => {
-  const tags = new Tags({
+  const tag = new Tag({
     name: req.body.name
   });
   try {
-    const newTag = await Tags.save();
+    const newTag = await Tag.save();
     res.status(201).json(newTag);
   } catch (err) {
     res.status(400).json({ message: err.message });

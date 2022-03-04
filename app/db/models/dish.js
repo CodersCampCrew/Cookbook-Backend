@@ -10,6 +10,10 @@ const CommentSchema = new Schema({
   text: {
     type: String,
     required: true
+  },
+  dish: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Dish'
   }
 });
 
@@ -54,8 +58,12 @@ const DishSchema = new Schema({
     default: false
   },
   tags: [TagSchema],
-  comments: [CommentSchema]
+  comments: [{
+    type: mongoose.Types.ObjectId,
+    ref: 'Comment'
+  }]
 });
 
 export const Tag = mongoose.model('Tag', TagSchema);
 export const Dish = mongoose.model('Dish', DishSchema);
+export const Comment = mongoose.model('Comment', CommentSchema);
