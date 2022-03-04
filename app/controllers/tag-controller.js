@@ -1,4 +1,4 @@
-import {Tag} from '../db/models/dish.js';
+import { Tag } from '../db/models/dish.js';
 import express from 'express';
 
 const router = new express.Router();

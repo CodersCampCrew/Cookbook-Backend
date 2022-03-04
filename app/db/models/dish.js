@@ -58,10 +58,12 @@ const DishSchema = new Schema({
     default: false
   },
   tags: [TagSchema],
-  comments: [{
-    type: mongoose.Types.ObjectId,
-    ref: 'Comment'
-  }]
+  comments: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ]
 });
 
 export const Tag = mongoose.model('Tag', TagSchema);
