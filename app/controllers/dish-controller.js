@@ -42,6 +42,12 @@ router.post('/dish/:id/comment', async (req, res) => {
   res.status(201).json(dishRelated);
 });
 
+router.get('/:name', async (req, res) => {
+  const { name } = req.params;
+  const dish = await Dish.findOne({name: name});
+  res.status(200).json(dish);
+});
+
 router.get('/dish/:id/comments', async (req, res) => {
   const id = req.params.id;
   const dish = await Dish.findById(id);
