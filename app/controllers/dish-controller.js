@@ -4,7 +4,7 @@ import express from 'express';
 const router = new express.Router();
 
 router.get('/recommended', async (req, res) => {
-  const recommendedDish = await Dish.find().sort({'recommended': -1}).limit(1);
+  const recommendedDish = await Dish.find().sort({ recommended: -1 }).limit(1);
   res.status(200).json(recommendedDish);
 });
 
@@ -16,7 +16,7 @@ router.post('/create', async (req, res) => {
     time: req.body.time,
     desc: req.body.desc,
     shortDesc: req.body.shortDesc,
-    categorie: req.body.categorie,
+    categorie: req.body.categorie
   });
 
   try {
@@ -44,7 +44,7 @@ router.post('/dish/:id/comment', async (req, res) => {
 
 router.get('/:name', async (req, res) => {
   const { name } = req.params;
-  const dish = await Dish.findOne({name: name});
+  const dish = await Dish.findOne({ name: name });
   res.status(200).json(dish);
 });
 
