@@ -30,7 +30,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "yarn build && node ./build/index.js",
+    "start": "yarn app/index.js",
     "dev": "nodemon ./app/index.js",
     "build": "babel ./app -d build",
     "test": "jest --passWithNoTests",
