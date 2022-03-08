@@ -8,6 +8,11 @@ router.get('/recommended', async (req, res) => {
   res.status(200).json(recommendedDish);
 });
 
+router.get('/', async (req, res)=> {
+  const dishes = await Dish.find();
+  res.status(200).json(dishes);
+});
+
 router.post('/create', async (req, res) => {
   const dish = new Dish({
     name: req.body.name,
