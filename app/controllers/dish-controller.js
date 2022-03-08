@@ -4,8 +4,8 @@ import express from 'express';
 const router = new express.Router();
 
 router.get('/recommended', async (req, res) => {
-  const dishes = await Dish.find();
-  res.status(200).json(dishes);
+  const recommendedDish = await Dish.find().sort({ recommended: -1 }).limit(1);
+  res.status(200).json(recommendedDish);
 });
 
 router.post('/create', async (req, res) => {
@@ -23,22 +23,29 @@ router.post('/create', async (req, res) => {
     await dish.save();
     res.status(201).json(dish);
   } catch (error) {
-    res.status(422).json({ errors: error.errors });
+    res.status(422).json({ message: error.message });
+    console.log(error);
   }
 });
 
 router.post('/dish/:id/comment', async (req, res) => {
   const { id } = req.params;
   const comment = new Comment({
-    authorId: '61224f32898d4c766674fc3f',
+    authorId: req.body.authorId,
     text: req.body.text,
-    dish: id
+    dish: req.body.dish
   });
   await comment.save();
   const dishRelated = await Dish.findById(id);
   dishRelated.comments.push(comment);
   await dishRelated.save();
   res.status(201).json(dishRelated);
+});
+
+router.get('/:name', async (req, res) => {
+  const { name } = req.params;
+  const dish = await Dish.findOne({ name: name });
+  res.status(200).json(dish);
 });
 
 router.get('/dish/:id/comments', async (req, res) => {

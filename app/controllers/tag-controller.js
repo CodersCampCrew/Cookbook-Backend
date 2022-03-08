@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     name: req.body.name
   });
   try {
-    const newTag = await Tag.save();
+    const newTag = await tag.save();
     res.status(201).json(newTag);
   } catch (err) {
     res.status(400).json({ message: err.message });

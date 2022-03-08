@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
   authorId: {
     type: mongoose.Types.ObjectId,
-    ref: 'User',
-    required: true
+    // required: true,
+    ref: 'User'
   },
   text: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   dish: {
     type: mongoose.Types.ObjectId,
@@ -57,13 +57,12 @@ const DishSchema = new Schema({
     type: Boolean,
     default: false
   },
+  recommended: {
+    type: Number,
+    default: 0
+  },
   tags: [TagSchema],
-  comments: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: 'Comment'
-    }
-  ]
+  comments: [CommentSchema]
 });
 
 export const Tag = mongoose.model('Tag', TagSchema);
