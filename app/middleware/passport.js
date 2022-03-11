@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 // Load User Model
 import { User } from '../db/models/user.js';
 
-module.exports = (passport) => {
+export default passportAuth = () => {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
       // Match User
