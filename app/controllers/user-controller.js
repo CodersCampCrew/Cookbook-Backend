@@ -1,27 +1,98 @@
-const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
+import { User } from '../db/models/user.js';
+import express from 'express';
+import bcrypt from 'bcrypt';
+import passport from 'passport';
 
-const initialize = (passport, getUserByEmail) => {
-  const authenticateUser = (email, password, done) => {
-    const user = getUserByEmail(email);
-    if (user == null) {
-      return done(null, false, { message: 'No user with that email' });
-    }
+const router = new express.Router();
 
-    try {
-      if (bcrypt.compare(password, user.password)) {
-        return done(null, user);
+// Register Page
+router.get('/register', (req, res) => res.send('Register'));
+
+// Registare Handle
+router.post('/register', (req, res) => {
+  const { name, email, password, password2 } = req.body;
+  const errors = [];
+
+  // Check required fields
+  if (!name || !email || !password || !password2) {
+    errors.push({ msg: 'Please fill in all fields' });
+  }
+
+  // Check passwords match
+  if (password !== password2) {
+    errors.push({ msg: 'Password do not match' });
+  }
+
+  // Check pass length
+  if (password.length < 6) {
+    errors.push({ msg: 'Password should be at least 6 characters' });
+  }
+
+  if (errors.length > 0) {
+    res.render('register', {
+      errors,
+      name,
+      email,
+      password,
+      password2
+    });
+  } else {
+    // Validation passed
+    User.findOne({ email: email }).then((user) => {
+      if (user) {
+        // User exists
+        errors.push({ msg: 'Email is already registered' });
+        res.render('register', {
+          errors,
+          name,
+          email,
+          password,
+          password2
+        });
       } else {
-        return done(null, false, { message: 'Password incorrect' });
+        const newUser = new User({
+          name,
+          email,
+          password
+        });
+        // Hash Password
+        bcrypt.genSalt(10, (err, salt) =>
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            // Set password to hashed
+            newUser.password = hash;
+            // Save user
+            newUser
+              .save()
+              .then((user) => {
+                req.flash('success_msg', 'You are now registered');
+                res.redirect('/users/login');
+              })
+              .catch((err) => console.log(err));
+          })
+        );
       }
-    } catch (e) {
-      return done(e);
-    }
-  };
+    });
+  }
+});
 
-  passport.use(new LocalStrategy({ usernameField: 'email' }), authenticateUser);
-  passport.serializeUser((user, done) => {});
-  passport.deserializeUser((id, done) => {});
-};
+// Login Page
+router.get('/login', (req, res) => res.render('login'));
 
-export default initialize;
+// Login Handle
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+// Logout Handle
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('/users/login');
+});
+
+export default router;
