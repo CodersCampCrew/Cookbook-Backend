@@ -2,16 +2,14 @@ export const ensureAdmin = (req, res, next) => {
   if (req.isAuthenticated() && req.user.role === 'Admin') {
     return next();
   }
-  req.flash('error_msg', 'Access denied - no admin rights');
-  res.status(403);
+  res.status(403).json({ message: 'Access denied - no admin rights' });
 };
 
 export const ensureUser = (req, res, next) => {
   if (req.isAuthenticated() && req.user.role === 'User') {
     return next();
   }
-  req.flash('error_msg', 'Please log in to view this resource');
-  res.redirect('/users/login');
+  res.status(403).json({ message: 'Access denied - please log in' });
 };
 
 export const role = {

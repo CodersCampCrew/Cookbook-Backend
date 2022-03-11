@@ -6,7 +6,7 @@ import passport from 'passport';
 const router = new express.Router();
 
 // Register Page
-router.get('/register', (req, res) => res.send('Register'));
+router.get('/register', (req, res) => res.status(200));
 
 // Registare Handle
 router.post('/register', (req, res) => {
@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render('register', {
+    res.status(400).send({
       errors,
       name,
       email,
@@ -42,7 +42,7 @@ router.post('/register', (req, res) => {
       if (user) {
         // User exists
         errors.push({ msg: 'Email is already registered' });
-        res.render('register', {
+        res.status(400).send({
           errors,
           name,
           email,
@@ -65,8 +65,7 @@ router.post('/register', (req, res) => {
             newUser
               .save()
               .then((user) => {
-                req.flash('success_msg', 'You are now registered');
-                res.redirect('/users/login');
+                res.status(200).json({ msg: 'You are now registered' });
               })
               .catch((err) => console.log(err));
           })
@@ -77,22 +76,20 @@ router.post('/register', (req, res) => {
 });
 
 // Login Page
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => res.status(200));
 
 // Login Handle
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
-    failureFlash: true
+    successRedirect: res.status(200),
+    failureRedirect: res.status(400).json({ msg: 'Loggin failed' })
   })(req, res, next);
 });
 
 // Logout Handle
 router.get('/logout', (req, res) => {
   req.logout();
-  req.flash('success_msg', 'You are logged out');
-  res.redirect('/users/login');
+  res.status(200).json({ msg: 'You are logged out' });
 });
 
 export default router;
