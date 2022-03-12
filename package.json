@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-flash": "^0.0.2",
@@ -30,7 +31,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "yarn build && node ./build/index.js",
+    "start": "node app/index.js",
     "dev": "nodemon ./app/index.js",
     "build": "babel ./app -d build",
     "test": "jest --passWithNoTests",
