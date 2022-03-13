@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  nickname: {
+  name: {
     type: String,
     required: true,
     min: 6,
@@ -20,12 +20,14 @@ const UserSchema = new Schema({
     max: 1024,
     min: 6
   },
+  role: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
 
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
+export const User = mongoose.model('User', UserSchema);
