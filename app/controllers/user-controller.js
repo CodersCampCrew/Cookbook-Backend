@@ -5,9 +5,6 @@ import passport from 'passport';
 
 const router = new express.Router();
 
-// Register Page
-router.get('/register', (req, res) => res.status(200));
-
 // Registare Handle
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
@@ -74,9 +71,6 @@ router.post('/register', (req, res) => {
     });
   }
 });
-
-// Login Page
-router.get('/login', (req, res) => res.status(200));
 
 // Login Handle
 router.post('/login', (req, res, next) => {
