@@ -5,11 +5,12 @@ import dishController from './controllers/dish-controller.js';
 import userController from './controllers/user-controller.js';
 import session from 'express-session';
 import passport from 'passport';
+import {sessionKeySecret} from '../app/config.js';
 
 const app = express();
 
 import './db/mongoose.js';
-import './middleware/passport';
+import './middleware/passport.js';
 
 app.use(cors());
 
@@ -18,7 +19,7 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: sessionKeySecret,
     resave: true,
     saveUninitialized: true
   })
