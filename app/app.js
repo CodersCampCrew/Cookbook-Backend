@@ -5,7 +5,7 @@ import dishController from './controllers/dish-controller.js';
 import userController from './controllers/user-controller.js';
 import session from 'express-session';
 import passport from 'passport';
-import {sessionKeySecret} from '../app/config.js';
+import { sessionKeySecret } from '../app/config.js';
 
 const app = express();
 
