@@ -1,7 +1,7 @@
 import { User } from '../db/models/user.js';
 import express from 'express';
 import bcrypt from 'bcrypt';
-import passport from 'passport';
+import passport from '../middleware/passport.js';
 
 const router = new express.Router();
 
@@ -75,7 +75,7 @@ router.post('/register', (req, res) => {
 // Login Handle
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: res.status(200),
+    successRedirect: res.status(200).json({ msg: 'Loggin Successful' }),
     failureRedirect: res.status(400).json({ msg: 'Loggin failed' })
   })(req, res, next);
 });
