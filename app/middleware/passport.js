@@ -1,10 +1,10 @@
-import { LocalStrategy } from 'passport-local';
+import LocalStrategy from 'passport-local';
 import bcrypt from 'bcrypt';
 
 // Load User Model
 import { User } from '../db/models/user.js';
 
-export default passportAuth = () => {
+const passportAuth = () => {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
       // Match User
@@ -34,3 +34,5 @@ export default passportAuth = () => {
     });
   });
 };
+
+export default passportAuth;
