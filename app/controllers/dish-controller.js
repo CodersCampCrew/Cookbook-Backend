@@ -13,6 +13,11 @@ router.get('/', async (req, res) => {
   res.status(200).json(dishes);
 });
 
+router.get('/:dishId', async (req, res) => {
+  const dish = await Dish.findById(req.params.dishId);
+  res.status(200).json(dish);
+});
+
 router.post('/create', async (req, res) => {
   const dish = new Dish({
     name: req.body.name,
@@ -33,6 +38,12 @@ router.post('/create', async (req, res) => {
   }
 });
 
+router.delete('/remove/:name', async (req, res) => {
+  const { name } = req.params;
+   const dish = await Dish.deleteOne({ name: name });
+  res.status(204).json(dish);
+});
+
 router.post('/dish/:id/comment', async (req, res) => {
   const { id } = req.params;
   const comment = new Comment({
@@ -47,7 +58,7 @@ router.post('/dish/:id/comment', async (req, res) => {
   res.status(201).json(dishRelated);
 });
 
-router.get('/:name', async (req, res) => {
+router.get('/dish/:name', async (req, res) => {
   const { name } = req.params;
   const dish = await Dish.findOne({ name: name });
   res.status(200).json(dish);
