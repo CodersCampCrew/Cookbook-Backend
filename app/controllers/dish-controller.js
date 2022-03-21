@@ -78,10 +78,10 @@ router.delete('/remove/:name', async (req, res) => {
   const { name } = req.params;
 
   try {
-      await Dish.deleteOne({ name: name });
+    await Dish.deleteOne({ name: name });
   } catch (error) {
     res.status(404).json({ message: error.message });
-  };
+  }
 });
 
 router.post('/dish/:id/comment', async (req, res) => {
