@@ -8,7 +8,7 @@ router.get('/recommended', async (req, res) => {
   res.status(200).json(recommendedDish);
 });
 
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
   const dishes = await Dish.find();
   res.status(200).json(dishes);
 });
