@@ -13,6 +13,42 @@ router.get('/all', async (req, res) => {
   res.status(200).json(dishes);
 });
 
+router.get('/breakfast', async (req, res) => {
+  try {
+    const breakfast = await Dish.find({ categorie: 'breakfast' });
+    res.status(200).json(breakfast);
+  } catch (error) {
+    res.status(404);
+  }
+});
+
+router.get('/lunch', async (req, res) => {
+  try {
+    const lunch = await Dish.find({ categorie: 'lunch' });
+    res.status(200).json(lunch);
+  } catch (error) {
+    res.status(404);
+  }
+});
+
+router.get('/dinner', async (req, res) => {
+  try {
+    const dinner = await Dish.find({ categorie: 'dinner' });
+    res.status(200).json(dinner);
+  } catch (error) {
+    res.status(404);
+  }
+});
+
+router.get('/others', async (req, res) => {
+  try {
+    const others = await Dish.find({ categorie: 'others' });
+    res.status(200).json(others);
+  } catch (error) {
+    res.status(404);
+  }
+});
+
 router.get('/:dishId', async (req, res) => {
   const dish = await Dish.findById(req.params.dishId);
   res.status(200).json(dish);
@@ -72,42 +108,6 @@ router.get('/dish/:id/comments', async (req, res) => {
   const id = req.params.id;
   const dish = await Dish.findById(id);
   res.status(200).json(dish.comments);
-});
-
-router.get('/breakfast', async (req, res) => {
-  try {
-    const breakfast = await Dish.find({ categorie: 'breakfast' });
-    res.status(200).json(breakfast);
-  } catch (error) {
-    res.status(404);
-  }
-});
-
-router.get('/lunch', async (req, res) => {
-  try {
-    const lunch = await Dish.find({ categorie: 'lunch' });
-    res.status(200).json(lunch);
-  } catch (error) {
-    res.status(404);
-  }
-});
-
-router.get('/dinner', async (req, res) => {
-  try {
-    const dinner = await Dish.find({ categorie: 'dinner' });
-    res.status(200).json(dinner);
-  } catch (error) {
-    res.status(404);
-  }
-});
-
-router.get('/others', async (req, res) => {
-  try {
-    const others = await Dish.find({ categorie: 'others' });
-    res.status(200).json(others);
-  } catch (error) {
-    res.status(404);
-  }
 });
 
 export default router;
