@@ -8,55 +8,9 @@ router.get('/recommended', async (req, res) => {
   res.status(200).json(recommendedDish);
 });
 
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
   const dishes = await Dish.find();
   res.status(200).json(dishes);
-});
-
-router.post('/create', async (req, res) => {
-  const dish = new Dish({
-    name: req.body.name,
-    img: req.body.img,
-    kcal: req.body.kcal,
-    time: req.body.time,
-    desc: req.body.desc,
-    shortDesc: req.body.shortDesc,
-    categorie: req.body.categorie
-  });
-
-  try {
-    await dish.save();
-    res.status(201).json(dish);
-  } catch (error) {
-    res.status(422).json({ message: error.message });
-    console.log(error);
-  }
-});
-
-router.post('/dish/:id/comment', async (req, res) => {
-  const { id } = req.params;
-  const comment = new Comment({
-    authorId: req.body.authorId,
-    text: req.body.text,
-    dish: req.body.dish
-  });
-  await comment.save();
-  const dishRelated = await Dish.findById(id);
-  dishRelated.comments.push(comment);
-  await dishRelated.save();
-  res.status(201).json(dishRelated);
-});
-
-router.get('/:name', async (req, res) => {
-  const { name } = req.params;
-  const dish = await Dish.findOne({ name: name });
-  res.status(200).json(dish);
-});
-
-router.get('/dish/:id/comments', async (req, res) => {
-  const id = req.params.id;
-  const dish = await Dish.findById(id);
-  res.status(200).json(dish.comments);
 });
 
 router.get('/breakfast', async (req, res) => {
@@ -93,6 +47,67 @@ router.get('/others', async (req, res) => {
   } catch (error) {
     res.status(404);
   }
+});
+
+router.get('/:dishId', async (req, res) => {
+  const dish = await Dish.findById(req.params.dishId);
+  res.status(200).json(dish);
+});
+
+router.post('/create', async (req, res) => {
+  const dish = new Dish({
+    name: req.body.name,
+    img: req.body.img,
+    kcal: req.body.kcal,
+    time: req.body.time,
+    desc: req.body.desc,
+    shortDesc: req.body.shortDesc,
+    categorie: req.body.categorie
+  });
+
+  try {
+    await dish.save();
+    res.status(201).json(dish);
+  } catch (error) {
+    res.status(422).json({ message: error.message });
+    console.log(error);
+  }
+});
+
+router.delete('/remove/:name', async (req, res) => {
+  const { name } = req.params;
+
+  try {
+    await Dish.deleteOne({ name: name });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+});
+
+router.post('/dish/:id/comment', async (req, res) => {
+  const { id } = req.params;
+  const comment = new Comment({
+    authorId: req.body.authorId,
+    text: req.body.text,
+    dish: req.body.dish
+  });
+  await comment.save();
+  const dishRelated = await Dish.findById(id);
+  dishRelated.comments.push(comment);
+  await dishRelated.save();
+  res.status(201).json(dishRelated);
+});
+
+router.get('/dish/:name', async (req, res) => {
+  const { name } = req.params;
+  const dish = await Dish.findOne({ name: name });
+  res.status(200).json(dish);
+});
+
+router.get('/dish/:id/comments', async (req, res) => {
+  const id = req.params.id;
+  const dish = await Dish.findById(id);
+  res.status(200).json(dish.comments);
 });
 
 export default router;

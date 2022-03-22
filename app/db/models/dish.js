@@ -19,9 +19,9 @@ const CommentSchema = new Schema({
 
 const TagSchema = new Schema({
   name: {
-    type: String,
-    required: true,
-    unique: true
+    type: String
+    // required: true,
+    // unique: true
   }
 });
 
