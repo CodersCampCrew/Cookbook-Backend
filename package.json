@@ -27,26 +27,30 @@
     "mongoose": "^6.2.2",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
+    "swagger-ui-express": "^4.3.0",
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "yarn build && node ./build/index.js",
-    "dev": "nodemon ./app/index.js",
+    "start": "yarn build && node --experimental-json-modules ./build/index.js",
+    "dev": "nodemon --experimental-json-modules ./app/index.js",
     "build": "babel ./app -d build",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "coverage": "jest . --coverage",
     "lint": "eslint ./app --ext .js",
     "format": "prettier ./app --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "swagger": "node app/swagger.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/plugin-syntax-import-assertions": "^7.16.7",
     "@babel/preset-env": "^7.16.11",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
-    "eslint": "^8.9.0",
+    "eslint": "^8.11.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -55,7 +59,8 @@
     "lint-staged": "^12.3.4",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
-    "supertest": "^6.2.2"
+    "supertest": "^6.2.2",
+    "swagger-autogen": "^2.20.5"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
